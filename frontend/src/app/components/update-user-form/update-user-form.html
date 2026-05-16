@@ -1,0 +1,90 @@
+@if(!authStore.user()) {
+  <div class="p4 text-center text-slate-400">
+    Loading...
+  </div>
+} 
+@else {
+    <div class="w-full">
+<!-- ERROR -->
+ @if(error()){
+    <div class="mb-4 rounded-lg border border-red-500/20  bg-red-500/10 p-3 text-sm text-red-400">
+        {{error()}}
+
+    </div>
+ }
+
+ <!-- SUCCESS -->
+ @if(success()){
+    <div class="mb-4 rounded-lg border border-emerald-500/20  bg-emerald-500/10 p-3 text-sm text-emerald-400">
+        {{success()}}
+
+    </div>
+ }
+
+ <!-- FORM -->
+
+ <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
+
+    <!-- NAME -->
+<div class="space-y-2">
+
+    <label class="text-sm text-slate-300">
+        Name
+    </label>
+
+    <input hlmInput type="text" formControlName="name" class="border-slate-600 bg-slate-700/50 text-white">
+
+    @if(errors['name']){
+        <p class="text-sm text-red-400">
+            {{errors['name'][0]}}
+        </p>
+    }
+
+</div>
+
+
+<!-- EMAIL -->
+
+<div class="space-y-2">
+
+    <label class="text-sm text-slate-300">
+        Name
+    </label>
+
+    <input hlmInput type="text" formControlName="email" class="border-slate-600 bg-slate-700/50 text-white">
+
+    @if(errors['email']){
+        <p class="text-sm text-red-400">
+            {{errors['email'][0]}}
+        </p>
+    }
+
+</div>
+
+
+<!-- BUTTON -->
+
+<button hlmBtn
+type="submit"
+class="w-full bg-emerald-500 hover:bg-emerald-700"
+[disabled]="authStore.isLoading()"
+>
+
+@if(authStore.isLoading()){
+    <div class="flex items-center gap-2">
+        <ng-icon name="LoaderIcon"  class="animate-spin h-4 w-4">
+
+        </ng-icon>
+        <span>Updating...</span>
+    </div>
+}
+
+@else {
+    register modifications
+}
+</button>
+
+ </form>
+
+    </div>
+}

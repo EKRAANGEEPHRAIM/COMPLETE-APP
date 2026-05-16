@@ -1,0 +1,136 @@
+<div class="min-h-screen flex items-center justify-center bg-slate-900 px-4">
+    <div class="w-full max-w-md">
+        <!-- Card -->
+        <section hlmCard class="bg-slate-800/50 border-slate-700/50">
+
+            <!-- Header -->
+            <div hlmCardHeader class="pb-4">
+                <h1 hlmCardTitle class="text-white">
+                    {{ title() }}
+                </h1>
+                <p hlmCardDescription class="text-slate-400">
+                    {{ description() }}
+                </p>
+            </div>
+
+            <!-- Content -->
+            <div hlmCardContent>
+                <!-- Error Message -->
+                @if(authStore.error()){
+                    <div class="mb-4 rounded-lg border border-red-500/20 bg-red-500/10 p-3 text-sm text-red-400">
+                        {{ authStore.error() }}
+                    </div>
+                }
+
+                <!-- Form -->
+                <form class="space-y-4" [formGroup]="form" (ngSubmit)="submit()">
+                    
+                    <!-- Name Field -->
+                    @if(!isLogin()){
+                        <div class="space-y-2">
+                            <label class="text-sm text-slate-300">Name</label>
+                            <div class="relative">
+                                <ng-icon
+                                    [name]="UserIcon"
+                                    class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                                ></ng-icon>
+                                <input 
+                                    hlmInput 
+                                    type="text" 
+                                    placeholder="Enter your name" 
+                                    formControlName="name"
+                                    class="w-full pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500"
+                                />
+                            </div>
+                            @if(errors['name']){
+                                <p class="text-sm text-red-400">{{ errors['name'][0] }}</p>
+                            }
+                        </div>
+                    }
+
+                    <!-- Email Field -->
+                    <div class="space-y-2">
+                        <label class="text-sm text-slate-300">Email</label>
+                        <div class="relative">
+                            <ng-icon
+                                [name]="MailIcon" 
+                                class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400"
+                            ></ng-icon>
+                            <input 
+                                hlmInput 
+                                type="email" 
+                                placeholder="Enter your email" 
+                                formControlName="email"
+                                class="w-full pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500"
+                            />
+                        </div>
+                        @if(errors['email']){
+                            <p class="text-sm text-red-400">{{ errors['email'][0] }}</p>
+                        }
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="space-y-2">
+                        <label class="text-sm text-slate-300">Password</label>
+                        <div class="relative">
+                            <ng-icon
+                                [name]="LockIcon"
+                                class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+                            ></ng-icon>
+                            <input 
+                                hlmInput
+                                type="password" 
+                                placeholder="Enter your password"
+                                formControlName="password"
+                                class="w-full pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-slate-500 focus:ring-slate-500"
+                            />
+                        </div>
+                        @if(errors['password']){
+                            <p class="text-sm text-red-400">{{ errors['password'][0] }}</p>
+                        }
+                    </div>
+
+                    <!-- Button -->
+                    <button hlmBtn type="submit" [disabled]="authStore.isLoading()" class="w-full bg-slate-600 hover:bg-slate-500 text-white">
+                        @if(authStore.isLoading()){
+                            <div class="flex items-center justify-center gap-2">
+                                <ng-icon [name]="LoaderIcon" class="h-4 w-4 animate-spin"></ng-icon>
+                                @if(isLogin()){
+                                    <span>Signing in...</span>
+                                } @else {
+                                    <span>Creating account...</span>
+                                }
+                            </div>
+                        } @else {
+                            @if(isLogin()){
+                                <span>Sign In</span>
+                            } @else {
+                                <span>Sign Up</span>
+                            }
+                        }
+                    </button>
+                    
+                </form>
+
+                <!-- Toggle Mode -->
+                <div class="mt-6 border-t border-slate-700/50 pt-4 text-center">
+                    <p class="text-slate-400">
+                        @if(isLogin()){
+                            Don't have an account?
+                        } @else {
+                            Already have an account?
+                        }
+                        <button type="button" (click)="toggleMode()" class="ml-2 font-medium text-emerald-400 hover:text-emerald-300">
+                            @if(isLogin()){
+                                Sign Up
+                            } @else {
+                                Sign In
+                            }
+                        </button>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>

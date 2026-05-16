@@ -1,0 +1,88 @@
+@if(!authStore.user()){
+    <!-- LOADING -->
+
+    <div class="min-h-screen bg-slate-900 flex items-center justify-center">
+
+                                  <ng-icon
+                                    [name]="LoaderIcon"
+                                    class="h-10 w-10 animate-spin text-emerald-500"
+                                >
+
+                            </ng-icon>
+    </div>
+}
+@else {
+    <div class="min-h-screen bg-slate-900">
+
+        <!-- HEADER -->
+         <header class="sticky top-o z-10 border-b border-slate-700/50 bg-slate-900/50 backdrop-blur-sm ">
+
+            <div class="max-auto flex max-w-5xl items-center justify-between px-6 py-4">
+
+                <!-- USER -->
+                <div class="flex items-center gap-3">
+
+                    <!-- AVATAR -->
+                     <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500">
+                        <span class="text-lg font-bold text-white">
+                            {{authStore.user()?.name?.charAt(0)?.toUpperCase()}}
+                        </span>
+                     </div>
+
+
+                     <!-- INFO -->
+                      <div>
+                        <h1 class="font-semibold text-white">
+                            {{authStore.user()?.name}}
+                        </h1>
+
+
+                        <p class="text-sm text-slate-400">
+                            {{authStore.user()?.email}}
+                        </p>
+                      </div>
+                </div>
+
+
+                <!-- BUTTON -->
+                 <button
+                 hlmBtn
+                 variant="outline"
+                 class="text-slate-400 hover:bg-slate-700 hover:text-white"
+                 >
+                    Logout
+                </button>
+            </div>
+
+         </header>
+
+         <!-- CONTENT -->
+
+         <div class="mx-auto max-w-5xl px-6 py-10">
+
+            <section hlmCard class="border-slate-700/50 bg-slate-800/50">
+                <!-- HEADER -->
+
+                <div hlmCardHeader>
+                    <h2 hlmCardTitle class="flex items-center gap-2 text-white">
+                         <ng-icon
+                                    [name]="PencilIcon"
+                                    class="h-6 w-6 text-emerald-500"
+                                >
+
+                            </ng-icon>
+
+                            Modify your profil
+                    </h2>
+                </div>
+
+                <!-- CONTENT -->
+                 <div hlmCardContent>
+                    <app-update-user-form></app-update-user-form>
+                 </div>
+            </section>
+
+         </div>
+
+    </div>
+}
