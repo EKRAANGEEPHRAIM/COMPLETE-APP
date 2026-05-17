@@ -4,8 +4,8 @@ import { lucideLoaderCircle } from '@ng-icons/lucide';
 import { AuthStore } from '../../store/auth.store';
 import { validateWithZod } from '../../utils/validate-with-zod';
 import { UpdateUserFormData, updateUserSchema } from '../../schema/Auth.schema';
-import { HlmInput } from "@spartan-ng/helm/input";
-import { HlmButton } from "@spartan-ng/helm/button";
+import { HlmButton } from '../../shared/ui/button/src/index';
+import { HlmInput } from '../../shared/ui/input/src/index';
 import { NgIcon } from "@ng-icons/core";
 
 @Component({

@@ -14,6 +14,7 @@ export interface User {
   updatedAt: Date;
 }
 
+
 export interface LoginFormData {
   email: string;
   password: string;

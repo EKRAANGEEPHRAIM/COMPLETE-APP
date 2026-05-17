@@ -6,20 +6,20 @@ import { AuthStore } from '../../store/auth.store';
 import { Router } from '@angular/router';
 import { LoginFormData, loginSchema, RegisterFormData, registerSchema } from '../../schema/Auth.schema';
 import { validateWithZod } from '../../utils/validate-with-zod';
-import { HlmCardTitle, HlmCardDescription, HlmCardHeader, HlmCardContent } from "@spartan-ng/helm/card";
-import { HlmButton } from "@spartan-ng/helm/button";
-import { HlmInput  } from "@spartan-ng/helm/input";
+import { HlmCardTitle, HlmCardDescription, HlmCardHeader, HlmCardContent } from '../../shared/ui/card/src/index';
+import { HlmButton } from '../../shared/ui/button/src/index';
+import { HlmInput } from '../../shared/ui/input/src/index';
 
 @Component({
   selector: 'app-sign-in-sign-up-form',
   imports: [ReactiveFormsModule,
     NgIconComponent,
-     HlmCardTitle, 
-     HlmCardDescription, 
-     HlmCardHeader, 
-     HlmCardContent, 
-     HlmButton, 
-     HlmInput,
+    HlmCardTitle, 
+    HlmCardDescription, 
+    HlmCardHeader, 
+    HlmCardContent, 
+    HlmButton, 
+    HlmInput,
     ],
   templateUrl: './sign-in-sign-up-form.html',
   styleUrl: './sign-in-sign-up-form.css',
@@ -37,7 +37,7 @@ export class SignInSignUpForm {
  //INJECT
 private fb = inject(FormBuilder)
 
-readonly authStore = inject(AuthStore)
+readonly authStore = inject(AuthStore) 
 
 private router = inject(Router)
 
